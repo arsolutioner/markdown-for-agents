@@ -2,7 +2,24 @@
 name: markdown-for-agents
 description: Fetch web content as clean markdown using Cloudflare's conversion services. Use when fetching URL content where structured markdown is preferred over raw text extraction. Supports content negotiation, Workers AI, and Browser Rendering with automatic fallback.
 version: "1.0.0"
+author: Amram Englander
+license: MIT
 tags: ["markdown", "web-fetch", "cloudflare", "ai-agents", "llm-tools"]
+metadata:
+  openclaw:
+    requires:
+      env:
+        - CLOUDFLARE_ACCOUNT_ID
+        - CLOUDFLARE_API_TOKEN
+      bins:
+        - python3
+    primaryEnv: CLOUDFLARE_API_TOKEN
+    emoji: "\U0001F4DD"
+    homepage: https://github.com/arsolutioner/markdown-for-agents
+    os:
+      - macos
+      - linux
+      - windows
 ---
 
 # Markdown for Agents Skill

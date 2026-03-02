@@ -7,6 +7,15 @@ Methods (tried in order):
 1. Content negotiation (Accept: text/markdown) - free, no credentials
 2. Workers AI toMarkdown REST API - needs CLOUDFLARE credentials
 3. Browser Rendering /markdown API - needs CLOUDFLARE credentials
+
+SECURITY MANIFEST:
+  Environment variables accessed: CLOUDFLARE_ACCOUNT_ID, CLOUDFLARE_API_TOKEN
+  External endpoints called:
+    - User-provided URL (Method 1: content negotiation)
+    - https://api.cloudflare.com/client/v4/accounts/{id}/ai/tomarkdown (Method 2)
+    - https://api.cloudflare.com/client/v4/accounts/{id}/browser-rendering/markdown (Method 3)
+  Local files read: .env (script dir, cwd, or ~/.claude/.env) for credentials
+  Local files written: none
 """
 
 import sys
