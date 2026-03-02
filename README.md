@@ -176,14 +176,13 @@ This skill follows the [Agent Skills](https://agentskills.io) open standard:
 markdown-for-agents/
   .claude-plugin/
     plugin.json              # Claude Code plugin manifest
+    marketplace.json         # Claude Code marketplace descriptor
   skills/
     markdown-for-agents/
       SKILL.md               # Agent Skills manifest (full docs, CLI usage, examples)
   scripts/
     fetch_markdown.py        # Main CLI tool (all 3 methods)
-    load_env.sh              # Bash helper for loading Cloudflare credentials
   install.sh                 # One-line installer script
-  marketplace.json           # Claude Code marketplace descriptor
 ```
 
 ---

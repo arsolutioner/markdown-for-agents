@@ -9,7 +9,6 @@ build/
 # Environment and credentials
 .env
 *.env
-!scripts/load_env.sh
 
 # OS files
 .DS_Store

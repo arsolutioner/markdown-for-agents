@@ -1,7 +1,7 @@
 {
   "name": "markdown-for-agents",
   "version": "1.0.0",
-  "description": "Fetch web content as clean markdown using Cloudflare's conversion services with cascading fallback. Supports content negotiation, Workers AI, Browser Rendering, and local extraction.",
+  "description": "Fetch web content as clean markdown using Cloudflare's conversion services with cascading fallback. Supports content negotiation, Workers AI, and Browser Rendering.",
   "author": {
     "name": "Amram Englander",
     "url": "https://github.com/arsolutioner"
