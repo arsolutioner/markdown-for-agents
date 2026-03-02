@@ -34,29 +34,52 @@ def validate_url(url):
     return url
 
 
+def _read_env_file(path, account_id, api_token):
+    """Read Cloudflare credentials from a .env file."""
+    if not os.path.exists(path):
+        return account_id, api_token
+    with open(path, 'r') as f:
+        for line in f:
+            line = line.strip()
+            if not line or line.startswith('#'):
+                continue
+            if '=' in line:
+                key, _, value = line.partition('=')
+                key = key.strip()
+                value = value.strip().strip('"').strip("'")
+                if key == 'CLOUDFLARE_ACCOUNT_ID' and not account_id:
+                    account_id = value
+                elif key == 'CLOUDFLARE_API_TOKEN' and not api_token:
+                    api_token = value
+    return account_id, api_token
+
+
 def load_cloudflare_credentials():
-    """Load Cloudflare credentials from environment or ~/.claude/.env."""
+    """Load Cloudflare credentials from environment or .env files.
+
+    Checks in order (first found wins):
+      1. Environment variables
+      2. .env in the script's own directory
+      3. .env in the current working directory
+      4. ~/.claude/.env (Claude Code)
+    """
     account_id = os.environ.get('CLOUDFLARE_ACCOUNT_ID')
     api_token = os.environ.get('CLOUDFLARE_API_TOKEN')
 
     if account_id and api_token:
         return account_id, api_token
 
-    env_file = os.path.expanduser('~/.claude/.env')
-    if os.path.exists(env_file):
-        with open(env_file, 'r') as f:
-            for line in f:
-                line = line.strip()
-                if not line or line.startswith('#'):
-                    continue
-                if '=' in line:
-                    key, _, value = line.partition('=')
-                    key = key.strip()
-                    value = value.strip().strip('"').strip("'")
-                    if key == 'CLOUDFLARE_ACCOUNT_ID' and not account_id:
-                        account_id = value
-                    elif key == 'CLOUDFLARE_API_TOKEN' and not api_token:
-                        api_token = value
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    env_paths = [
+        os.path.join(script_dir, '.env'),
+        os.path.join(os.getcwd(), '.env'),
+        os.path.expanduser('~/.claude/.env'),
+    ]
+
+    for env_file in env_paths:
+        account_id, api_token = _read_env_file(env_file, account_id, api_token)
+        if account_id and api_token:
+            break
 
     return account_id, api_token
 
