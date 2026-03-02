@@ -1,0 +1,15 @@
+{
+  "name": "markdown-for-agents-marketplace",
+  "description": "Marketplace for the markdown-for-agents skill",
+  "plugins": {
+    "markdown-for-agents": {
+      "description": "Fetch web content as clean markdown using Cloudflare conversion services with cascading fallback",
+      "version": "1.0.0",
+      "source": {
+        "source": "github",
+        "repo": "arsolutioner/markdown-for-agents"
+      },
+      "keywords": ["markdown", "web-fetch", "cloudflare", "ai-agents"]
+    }
+  }
+}
