@@ -8,7 +8,7 @@
       "name": "markdown-for-agents",
       "description": "Fetch web content as clean markdown using Cloudflare conversion services with cascading fallback",
       "version": "1.0.0",
-      "source": ".",
+      "source": "./",
       "keywords": ["markdown", "web-fetch", "cloudflare", "ai-agents"]
     }
   ]
